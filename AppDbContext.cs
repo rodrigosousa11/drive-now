@@ -9,13 +9,13 @@ namespace DriveNow
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<RentalContract> RentalContracts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Car>()
+            modelBuilder.Entity<Vehicle>()
                 .HasIndex(c => c.LicensePlate)
                 .IsUnique();
 

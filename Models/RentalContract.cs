@@ -13,9 +13,9 @@ namespace DriveNow.Models
         public Customer Customer { get; set; }
 
         [Required]
-        [Display(Name = "Car")]
-        public int CarId { get; set; }
-        public Car Car { get; set; }
+        [Display(Name = "Vehicle")]
+        public int VehicleId { get; set; }
+        public Vehicle Vehicle { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

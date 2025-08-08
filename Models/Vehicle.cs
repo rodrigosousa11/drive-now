@@ -2,7 +2,7 @@
 
 namespace DriveNow.Models
 {
-    public class Car
+    public class Vehicle
     {
         public int Id { get; set; }
 
@@ -14,10 +14,11 @@ namespace DriveNow.Models
 
         [Required]
         [Display(Name = "License Plate")]
+        [RegularExpression(@"^[A-Z0-9]{2}-[A-Z0-9]{2}-[A-Z0-9]{2}$", ErrorMessage = "License plate must be in the format XX-XX-XX.")]
         public string LicensePlate { get; set; }
 
         [Required]
-        [Range(1900, 2100, ErrorMessage = "Manufacture year must be between 1900 and 2100.")]
+        [Range(1900, 2025, ErrorMessage = "Manufacture year must be between 1900 and 2025.")]
         [Display(Name = "Manufacture Year")]
         public int ManufactureYear { get; set; }
 
@@ -27,7 +28,5 @@ namespace DriveNow.Models
 
         [Display(Name = "Is Rented")]
         public bool IsRented { get; set; } = false;
-
-        public int Horsepower { get; set; }
     }
 }
