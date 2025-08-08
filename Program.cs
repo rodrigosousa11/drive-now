@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using DriveNow;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,6 @@ builder.Services.AddRouting(options =>
     options.LowercaseUrls = true;
     options.LowercaseQueryStrings = true;
 });
-
 
 var app = builder.Build();
 

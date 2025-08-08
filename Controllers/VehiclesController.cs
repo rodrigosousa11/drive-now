@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DriveNow;
 using DriveNow.Models;
+using PagedList.Core;
 
 namespace DriveNow.Controllers
 {
@@ -19,13 +14,24 @@ namespace DriveNow.Controllers
             _context = context;
         }
 
-        // GET: Vehicles
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? page)
         {
-            return View(await _context.Vehicles.ToListAsync());
+            int pageNumber = page ?? 1;
+            int pageSize = 12;
+
+            var vehicles = _context.Vehicles.OrderBy(v => v.Brand);
+
+            var pagedVehicles = new StaticPagedList<Vehicle>(
+                vehicles.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
+                pageNumber,
+                pageSize,
+                vehicles.Count()
+            );
+
+            return View(pagedVehicles);
         }
 
-        // GET: Vehicles/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,13 +49,11 @@ namespace DriveNow.Controllers
             return View(vehicle);
         }
 
-        // GET: Vehicles/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Vehicles/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
@@ -63,7 +67,6 @@ namespace DriveNow.Controllers
             return View(vehicle);
         }
 
-        // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,7 +82,6 @@ namespace DriveNow.Controllers
             return View(vehicle);
         }
 
-        // POST: Vehicles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
@@ -112,7 +114,6 @@ namespace DriveNow.Controllers
             return View(vehicle);
         }
 
-        // GET: Vehicles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,7 +131,6 @@ namespace DriveNow.Controllers
             return View(vehicle);
         }
 
-        // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
