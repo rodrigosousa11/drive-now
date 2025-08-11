@@ -1,8 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home";
-}
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
-<h1>Welcome to DriveNow</h1>
-<p>This is the home page before showing the vehicles list.</p>
+<div class="container my-5">
+    <h1 class="text-center mb-4">@Localizer["WelcomeTitle"]</h1>
 
-<a asp-controller="Vehicles" asp-action="Index" class="btn btn-primary">Go to Vehicles List</a>
+    <div class="row g-4 justify-content-center mt-5">
+
+        <div class="col-12 col-md-4">
+            <a asp-controller="Vehicles" asp-action="Index" class="text-decoration-none text-dark">
+                <div class="card shadow-lg border-0 text-center h-100 clickable-card">
+                    <div class="card-body">
+                        <i class="bi bi-car-front-fill text-primary" style="font-size: 3rem;"></i>
+                        <h4 class="card-title mt-3">@Localizer["VehiclesListTitle"]</h4>
+                        <p class="card-text text-muted">@Localizer["VehiclesListDescription"]</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a asp-controller="Customers" asp-action="Index" class="text-decoration-none text-dark">
+                <div class="card shadow-lg border-0 text-center h-100 clickable-card">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill text-success" style="font-size: 3rem;"></i>
+                        <h4 class="card-title mt-3">@Localizer["CustomersListTitle"]</h4>
+                        <p class="card-text text-muted">@Localizer["CustomersListDescription"]</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a asp-controller="Contracts" asp-action="Index" class="text-decoration-none text-dark">
+                <div class="card shadow-lg border-0 text-center h-100 clickable-card">
+                    <div class="card-body">
+                        <i class="bi bi-file-earmark-text-fill text-warning" style="font-size: 3rem;"></i>
+                        <h4 class="card-title mt-3">@Localizer["ContractsListTitle"]</h4>
+                        <p class="card-text text-muted">@Localizer["ContractsListDescription"]</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

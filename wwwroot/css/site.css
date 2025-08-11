@@ -20,3 +20,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.clickable-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    aspect-ratio: 1 / 1;
+    height: 300px;
+}
+
+.clickable-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clickable-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
