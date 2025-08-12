@@ -5,32 +5,27 @@ using PagedList.Core;
 
 namespace DriveNow.Controllers
 {
-    public class VehiclesController : Controller
+    public class CustomerController : Controller
     {
         private readonly AppDbContext _context;
 
-        public VehiclesController(AppDbContext context)
+        public CustomerController(AppDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index(int? page)
+        public async Task<IActionResult> Index(int page = 1)
         {
-            int pageNumber = page ?? 1;
             int pageSize = 12;
 
-            var vehicles = _context.Vehicles.OrderBy(v => v.Brand);
+            var customersQuery = _context.Customers
+                .AsNoTracking()
+                .OrderBy(c => c.FullName);
 
-            var pagedVehicles = new StaticPagedList<Vehicle>(
-                vehicles.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
-                pageNumber,
-                pageSize,
-                vehicles.Count()
-            );
+            var pagedList = new PagedList<Customer>(customersQuery, page, pageSize);
 
-            return View(pagedVehicles);
+            return View(pagedList);
         }
-
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -39,14 +34,14 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles
+            var customer = await _context.Customers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(customer);
         }
 
         public IActionResult Create()
@@ -56,15 +51,15 @@ namespace DriveNow.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,FullName,Email,PhoneNumber,DrivingLicense")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
+                _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(customer);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -74,19 +69,19 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles.FindAsync(id);
-            if (vehicle == null)
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer == null)
             {
                 return NotFound();
             }
-            return View(vehicle);
+            return View(customer);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Email,PhoneNumber,DrivingLicense")] Customer customer)
         {
-            if (id != vehicle.Id)
+            if (id != customer.Id)
             {
                 return NotFound();
             }
@@ -95,12 +90,12 @@ namespace DriveNow.Controllers
             {
                 try
                 {
-                    _context.Update(vehicle);
+                    _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.Id))
+                    if (!CustomerExists(customer.Id))
                     {
                         return NotFound();
                     }
@@ -111,7 +106,7 @@ namespace DriveNow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(customer);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -121,33 +116,33 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles
+            var customer = await _context.Customers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(customer);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
-            if (vehicle != null)
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer != null)
             {
-                _context.Vehicles.Remove(vehicle);
+                _context.Customers.Remove(customer);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
+        private bool CustomerExists(int id)
         {
-            return _context.Vehicles.Any(e => e.Id == id);
+            return _context.Customers.Any(e => e.Id == id);
         }
     }
 }

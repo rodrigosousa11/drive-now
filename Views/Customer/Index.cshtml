@@ -1,14 +1,14 @@
 @using PagedList.Core
-@model IPagedList<DriveNow.Models.Vehicle>
+@model IPagedList<DriveNow.Models.Customer>
 
 @{
-    ViewData["Title"] = "Vehicles";
+    ViewData["Title"] = "Customers";
 }
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h3 class="mb-0">Vehicles</h3>
+    <h3 class="mb-0">Customers</h3>
     <a asp-action="Create" class="btn btn-success btn-sm">
-        <i class="bi bi-plus-lg"></i> Add Vehicle
+        <i class="bi bi-plus-lg"></i> Add Customer
     </a>
 </div>
 
@@ -16,12 +16,10 @@
     <table class="table table-striped table-hover align-middle mb-0">
         <thead class="table-dark sticky-top" style="background-color: #e9ecef;">
             <tr>
-                <th>@Html.DisplayNameFor(model => model[0].Brand)</th>
-                <th>@Html.DisplayNameFor(model => model[0].Model)</th>
-                <th>@Html.DisplayNameFor(model => model[0].LicensePlate)</th>
-                <th>@Html.DisplayNameFor(model => model[0].ManufactureYear)</th>
-                <th>@Html.DisplayNameFor(model => model[0].FuelType)</th>
-                <th>Status</th>
+                <th>@Html.DisplayNameFor(model => model[0].FullName)</th>
+                <th>@Html.DisplayNameFor(model => model[0].Email)</th>
+                <th>@Html.DisplayNameFor(model => model[0].PhoneNumber)</th>
+                <th>@Html.DisplayNameFor(model => model[0].DrivingLicense)</th>
                 <th></th>
             </tr>
         </thead>
@@ -29,8 +27,8 @@
             @if (Model.Count == 0)
             {
                 <tr>
-                    <td colspan="7" class="text-center text-muted">
-                        No vehicles found.
+                    <td colspan="5" class="text-center text-muted">
+                        No customers found.
                     </td>
                 </tr>
             }
@@ -38,22 +36,11 @@
             {
                 foreach (var item in Model)
                 {
-                    <tr style="cursor:pointer;" onclick="location.href='@Url.Action("Details", "Vehicles", new { id = item.Id })'">
-                        <td>@Html.DisplayFor(modelItem => item.Brand)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Model)</td>
-                        <td>@Html.DisplayFor(modelItem => item.LicensePlate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ManufactureYear)</td>
-                        <td>@Html.DisplayFor(modelItem => item.FuelType)</td>
-                        <td>
-                            @if (item.IsRented)
-                            {
-                                <span class="badge bg-danger d-inline-block text-center" style="min-width: 75px;">Rented</span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-success border d-inline-block text-center" style="min-width: 75px;">Available</span>
-                            }
-                        </td>
+                    <tr style="cursor:pointer;" onclick="location.href='@Url.Action("Details", "Customer", new { id = item.Id })'">
+                        <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DrivingLicense)</td>
                         <td class="text-end">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
@@ -62,7 +49,6 @@
                 }
             }
         </tbody>
-
     </table>
 </div>
 
@@ -90,7 +76,6 @@
                     <li class="page-item active">
                         <span class="page-link" style="color: black; background-color: #dee2e6; border-color: #dee2e6;">@i</span>
                     </li>
-
                 }
                 else
                 {

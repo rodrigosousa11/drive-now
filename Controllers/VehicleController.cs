@@ -1,25 +1,37 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DriveNow.Models;
+using PagedList.Core;
 
 namespace DriveNow.Controllers
 {
-    public class CustomersController : Controller
+    public class VehicleController : Controller
     {
         private readonly AppDbContext _context;
 
-        public CustomersController(AppDbContext context)
+        public VehicleController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: Customers
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? page)
         {
-            return View(await _context.Customers.ToListAsync());
+            int pageNumber = page ?? 1;
+            int pageSize = 12;
+
+            var vehicles = _context.Vehicles.OrderBy(v => v.Brand);
+
+            var pagedVehicles = new StaticPagedList<Vehicle>(
+                vehicles.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
+                pageNumber,
+                pageSize,
+                vehicles.Count()
+            );
+
+            return View(pagedVehicles);
         }
 
-        // GET: Customers/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -27,39 +39,34 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var vehicle = await _context.Vehicles
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (vehicle == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(vehicle);
         }
 
-        // GET: Customers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FullName,Email,PhoneNumber,DrivingLicense")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
+                _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(customer);
+            return View(vehicle);
         }
 
-        // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -67,22 +74,19 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
+            var vehicle = await _context.Vehicles.FindAsync(id);
+            if (vehicle == null)
             {
                 return NotFound();
             }
-            return View(customer);
+            return View(vehicle);
         }
 
-        // POST: Customers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Email,PhoneNumber,DrivingLicense")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
         {
-            if (id != customer.Id)
+            if (id != vehicle.Id)
             {
                 return NotFound();
             }
@@ -91,12 +95,12 @@ namespace DriveNow.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(vehicle);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!VehicleExists(vehicle.Id))
                     {
                         return NotFound();
                     }
@@ -107,10 +111,9 @@ namespace DriveNow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(customer);
+            return View(vehicle);
         }
 
-        // GET: Customers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -118,34 +121,33 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var vehicle = await _context.Vehicles
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (vehicle == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(vehicle);
         }
 
-        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer != null)
+            var vehicle = await _context.Vehicles.FindAsync(id);
+            if (vehicle != null)
             {
-                _context.Customers.Remove(customer);
+                _context.Vehicles.Remove(vehicle);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CustomerExists(int id)
+        private bool VehicleExists(int id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            return _context.Vehicles.Any(e => e.Id == id);
         }
     }
 }
