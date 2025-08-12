@@ -44,16 +44,16 @@
         </dd>
 
         <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.IsRented)
+            Estado
         </dt>
         <dd class="col-sm-10 fw-bold">
             @if (Model.IsRented)
             {
-                <span class="badge bg-secondary">Yes</span>
+                <span class="badge bg-danger d-inline-block text-center" style="min-width: 75px;">Rented</span>
             }
             else
             {
-                <span class="badge bg-light text-dark border">No</span>
+                <span class="badge bg-success border d-inline-block text-center" style="min-width: 75px;">Available</span>
             }
         </dd>
     </dl>
