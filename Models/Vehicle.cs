@@ -2,7 +2,7 @@
 
 namespace DriveNow.Models
 {
-    public class Vehicle
+    public class Vehicle : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -18,7 +18,7 @@ namespace DriveNow.Models
         public string LicensePlate { get; set; }
 
         [Required]
-        [Range(1900, 2025, ErrorMessage = "Manufacture year must be between 1900 and 2025.")]
+        [Range(1900, int.MaxValue, ErrorMessage = "Manufacture year must be between 1900 and the current year.")]
         [Display(Name = "Manufacture Year")]
         public int ManufactureYear { get; set; }
 
@@ -28,5 +28,15 @@ namespace DriveNow.Models
 
         [Display(Name = "Is Rented")]
         public bool IsRented { get; set; } = false;
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (ManufactureYear > DateTime.Now.Year)
+            {
+                yield return new ValidationResult(
+                    $"Manufacture year cannot be greater than {DateTime.Now.Year}.",
+                    new[] { nameof(ManufactureYear) });
+            }
+        }
     }
 }
