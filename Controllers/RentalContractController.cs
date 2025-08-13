@@ -17,7 +17,7 @@ namespace DriveNow.Controllers
 
         public IActionResult Index(int? page)
         {
-            int pageSize = 10;
+            int pageSize = 12;
             int pageNumber = page ?? 1;
 
             var contracts = _context.RentalContracts
@@ -32,8 +32,8 @@ namespace DriveNow.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Customers = _context.Customers.ToList();
-            ViewBag.Vehicles = _context.Vehicles.Where(v => !v.IsRented).ToList();
+            ViewBag.Customers = new SelectList(_context.Customers.ToList(), "Id", "FullName");
+            ViewBag.Vehicles = new SelectList(_context.Vehicles.Where(v => !v.IsRented).ToList(), "Id", "LicensePlate");
 
             var rentalContract = new RentalContract
             {
@@ -50,6 +50,11 @@ namespace DriveNow.Controllers
         {
             ModelState.Remove("Customer");
             ModelState.Remove("Vehicle");
+
+            if (rentalContract.StartDate < DateTime.Today)
+                ModelState.AddModelError("StartDate", "Start date cannot be in the past.");
+            if (rentalContract.EndDate <= rentalContract.StartDate)
+                ModelState.AddModelError("EndDate", "End date must be after the start date.");
 
             if (!ModelState.IsValid)
             {
@@ -71,19 +76,6 @@ namespace DriveNow.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var rentalContract = await _context.RentalContracts
-                .Include(r => r.Customer)
-                .Include(r => r.Vehicle)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (rentalContract == null) return NotFound();
-
-            return View(rentalContract);
-        }
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -108,6 +100,11 @@ namespace DriveNow.Controllers
 
             ModelState.Remove("Customer");
             ModelState.Remove("Vehicle");
+
+            if (rentalContract.EndDate <= rentalContract.StartDate)
+            {
+                ModelState.AddModelError("EndDate", "End date must be after the start date.");
+            }
 
             if (!ModelState.IsValid)
             {
