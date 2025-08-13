@@ -9,13 +9,13 @@
     <h4>@Html.DisplayFor(model => model.FullName)</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dt class="col-sm-2 fw-normal">@Localizer["Email"]</dt>
         <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.Email)</dd>
 
-        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.PhoneNumber)</dt>
+        <dt class="col-sm-2 fw-normal">@Localizer["PhoneNumber"]</dt>
         <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.PhoneNumber)</dd>
 
-        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.DrivingLicense)</dt>
+        <dt class="col-sm-2 fw-normal">@Localizer["DrivingLicense"]</dt>
         <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.DrivingLicense)</dd>
     </dl>
 </div>

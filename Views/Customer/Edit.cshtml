@@ -15,25 +15,25 @@
             <input type="hidden" asp-for="Id" />
 
             <div class="mb-3">
-                <label asp-for="FullName" class="form-label"></label>
+                <label asp-for="FullName" class="form-label">@Localizer["FullName"]</label>
                 <input asp-for="FullName" class="form-control" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
+                <label asp-for="Email" class="form-label">@Localizer["Email"]</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="PhoneNumber" class="form-label"></label>
+                <label asp-for="PhoneNumber" class="form-label">@Localizer["PhoneNumber"]</label>
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
             <div class="mb-4">
-                <label asp-for="DrivingLicense" class="form-label"></label>
+                <label asp-for="DrivingLicense" class="form-label">@Localizer["DrivingLicense"]</label>
                 <input asp-for="DrivingLicense" class="form-control" />
                 <span asp-validation-for="DrivingLicense" class="text-danger"></span>
             </div>
