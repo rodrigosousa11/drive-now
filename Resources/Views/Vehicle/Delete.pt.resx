@@ -31,7 +31,7 @@
     <value>Disponível</value>
   </data>
 	<data name="Button_Delete" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>Excluir</value>
   </data>
 	<data name="Button_BackToList" xml:space="preserve">
     <value>Voltar à Lista</value>

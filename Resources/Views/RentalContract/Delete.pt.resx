@@ -1,1 +1,30 @@
-﻿<root></root>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="DeleteTitle" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Tem certeza de que deseja excluir este contrato?</value>
+  </data>
+  <data name="CustomerLabel" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="VehicleLabel" xml:space="preserve">
+    <value>Veículo</value>
+  </data>
+  <data name="StartDateLabel" xml:space="preserve">
+    <value>Data de Início</value>
+  </data>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>Data de Fim</value>
+  </data>
+  <data name="InitialMileageLabel" xml:space="preserve">
+    <value>Quilometragem Inicial</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="BackToListButton" xml:space="preserve">
+    <value>Voltar à Lista</value>
+  </data>
+</root>

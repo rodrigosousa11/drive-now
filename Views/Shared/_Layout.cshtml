@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    
+    var contextLinks = new List<(string Text, string Controller, string Action)>
+    {
+        (Localizer["Customers"].Value, "Customer", "Index"),
+        (Localizer["Vehicles"].Value, "Vehicle", "Index"),
+        (Localizer["Contracts"].Value, "RentalContract", "Index")
+    };
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,30 +25,52 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DriveNow</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <div class="d-flex">
-                    <form asp-controller="Language" asp-action="SetLanguage" method="post" class="me-2">
-                        <input type="hidden" name="culture" value="en" />
-                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
-                        <button type="submit" class="btn btn-link p-0 border-0">
-                            <span class="fi fi-gb" style="font-size: 1.5rem;"></span>
-                        </button>
-                    </form>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @* Só mostrar links se não estivermos no Home *@
+                        @if (currentController != "Home")
+                        {
+                            foreach (var link in contextLinks)
+                            {
+                                if (link.Controller != currentController)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="@link.Controller" asp-action="@link.Action">@link.Text</a>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
 
-                    <form asp-controller="Language" asp-action="SetLanguage" method="post">
-                        <input type="hidden" name="culture" value="pt" />
-                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
-                        <button type="submit" class="btn btn-link p-0 border-0">
-                            <span class="fi fi-pt" style="font-size: 1.5rem;"></span>
-                        </button>
-                    </form>
+                    <div class="d-flex">
+                        <form asp-controller="Language" asp-action="SetLanguage" method="post" class="me-2">
+                            <input type="hidden" name="culture" value="en" />
+                            <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                            <button type="submit" class="btn btn-link p-0 border-0">
+                                <span class="fi fi-gb" style="font-size: 1.5rem;"></span>
+                            </button>
+                        </form>
+
+                        <form asp-controller="Language" asp-action="SetLanguage" method="post">
+                            <input type="hidden" name="culture" value="pt" />
+                            <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                            <button type="submit" class="btn btn-link p-0 border-0">
+                                <span class="fi fi-pt" style="font-size: 1.5rem;"></span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -46,6 +82,7 @@
             &copy; 2025 - DriveNow - Grupo JAP
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

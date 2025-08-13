@@ -1,36 +1,37 @@
 ﻿@model DriveNow.Models.RentalContract
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = Localizer["DeleteTitle"];
 }
 
 <div>
-    <h4>Are you sure you want to delete this contract?</h4>
+    <h4>@Localizer["DeleteConfirmation"]</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-3 fw-normal">Customer</dt>
+        <dt class="col-sm-3 fw-normal">@Localizer["CustomerLabel"]</dt>
         <dd class="col-sm-9 fw-bold">@Model.Customer.FullName</dd>
 
-        <dt class="col-sm-3 fw-normal">Vehicle</dt>
+        <dt class="col-sm-3 fw-normal">@Localizer["VehicleLabel"]</dt>
         <dd class="col-sm-9 fw-bold">@Model.Vehicle.LicensePlate</dd>
 
-        <dt class="col-sm-3 fw-normal">Start Date</dt>
+        <dt class="col-sm-3 fw-normal">@Localizer["StartDateLabel"]</dt>
         <dd class="col-sm-9 fw-bold">@Model.StartDate.ToShortDateString()</dd>
 
-        <dt class="col-sm-3 fw-normal">End Date</dt>
+        <dt class="col-sm-3 fw-normal">@Localizer["EndDateLabel"]</dt>
         <dd class="col-sm-9 fw-bold">@Model.EndDate.ToShortDateString()</dd>
 
-        <dt class="col-sm-3 fw-normal">Initial Mileage</dt>
+        <dt class="col-sm-3 fw-normal">@Localizer["InitialMileageLabel"]</dt>
         <dd class="col-sm-9 fw-bold">@Model.InitialMileage</dd>
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger me-2">
-            <i class="bi bi-trash"></i> Delete
+            <i class="bi bi-trash"></i> @Localizer["DeleteButton"]
         </button>
         <a asp-action="Index" class="btn btn-outline-dark">
-            <i class="bi bi-arrow-left"></i> Back to List
+            <i class="bi bi-arrow-left"></i> @Localizer["BackToListButton"]
         </a>
     </form>
 </div>

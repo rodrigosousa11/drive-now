@@ -1,10 +1,11 @@
 ﻿@model DriveNow.Models.RentalContract
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Edit Rental Contract";
+    ViewData["Title"] = Localizer["Title"];
 }
 
-<h4 class="mb-4">Edit Rental Contract</h4>
+<h4 class="mb-4">@Localizer["Title"]</h4>
 <hr />
 
 <div class="row">
@@ -21,36 +22,36 @@
             <input type="hidden" asp-for="InitialMileage" />
 
             <div class="mb-3">
-                <label class="form-label">Customer</label>
+                <label class="form-label">@Localizer["Customer"]</label>
                 <input class="form-control" value="@Model.Customer?.FullName" readonly />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Vehicle</label>
+                <label class="form-label">@Localizer["Vehicle"]</label>
                 <input class="form-control" value="@Model.Vehicle?.LicensePlate" readonly />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Start Date</label>
+                <label class="form-label">@Localizer["StartDate"]</label>
                 <input class="form-control" value="@Model.StartDate.ToString("yyyy-MM-dd")" readonly />
             </div>
 
             <div class="mb-3">
-                <label asp-for="EndDate" class="form-label"></label>
+                <label asp-for="EndDate" class="form-label">@Localizer["EndDate"]</label>
                 <input asp-for="EndDate" type="date" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Initial Mileage</label>
+                <label class="form-label">@Localizer["InitialMileage"]</label>
                 <input class="form-control" value="@Model.InitialMileage" readonly />
             </div>
 
             <button type="submit" class="btn btn-success">
-                <i class="bi bi-save"></i> Save
+                <i class="bi bi-save"></i> @Localizer["Save"]
             </button>
             <a asp-action="Index" class="btn btn-outline-dark ms-2">
-                <i class="bi bi-arrow-left"></i> Back to List
+                <i class="bi bi-arrow-left"></i> @Localizer["BackToList"]
             </a>
         </form>
     </div>

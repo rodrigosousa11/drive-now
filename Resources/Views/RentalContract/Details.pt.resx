@@ -1,1 +1,27 @@
-﻿<root></root>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="TitleLabel" xml:space="preserve">
+    <value>Detalhes</value>
+  </data>
+  <data name="CustomerLabel" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="VehicleLabel" xml:space="preserve">
+    <value>Veículo</value>
+  </data>
+  <data name="StartDateLabel" xml:space="preserve">
+    <value>Data de Início</value>
+  </data>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>Data de Fim</value>
+  </data>
+  <data name="InitialMileageLabel" xml:space="preserve">
+    <value>Quilometragem Inicial</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="BackToListButton" xml:space="preserve">
+    <value>Voltar à Lista</value>
+  </data>
+</root>

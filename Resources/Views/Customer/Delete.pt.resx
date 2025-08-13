@@ -2,6 +2,6 @@
 <root>
 	<data name="DeleteTitle" xml:space="preserve"><value>Eliminar Cliente</value></data>
 	<data name="DeleteConfirm" xml:space="preserve"><value>Tem a certeza que deseja eliminar este cliente?</value></data>
-	<data name="Delete" xml:space="preserve"><value>Eliminar</value></data>
+	<data name="Delete" xml:space="preserve"><value>Excluir</value></data>
 	<data name="BackToList" xml:space="preserve"><value>Voltar à Lista</value></data>
 </root>

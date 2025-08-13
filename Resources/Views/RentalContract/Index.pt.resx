@@ -28,7 +28,7 @@
     <value>Editar</value>
   </data>
 	<data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>Excluir</value>
   </data>
 	<data name="Previous" xml:space="preserve">
     <value>Anterior</value>

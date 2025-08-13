@@ -1,1 +1,30 @@
-﻿<root></root>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="DeleteTitle" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this contract?</value>
+  </data>
+  <data name="CustomerLabel" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="VehicleLabel" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="StartDateLabel" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="EndDateLabel" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="InitialMileageLabel" xml:space="preserve">
+    <value>Initial Mileage</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="BackToListButton" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+</root>

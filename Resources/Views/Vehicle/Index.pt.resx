@@ -37,7 +37,7 @@
     <value>Editar</value>
   </data>
 	<data name="Button_Delete" xml:space="preserve">
-    <value>Apagar</value>
+    <value>Excluir</value>
   </data>
 	<data name="Pagination_Previous" xml:space="preserve">
     <value>Anterior</value>
