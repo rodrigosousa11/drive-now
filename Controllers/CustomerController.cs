@@ -53,11 +53,23 @@ namespace DriveNow.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FullName,Email,PhoneNumber,DrivingLicense")] Customer customer)
         {
+            if (_context.Customers.Any(c => c.Email == customer.Email))
+            {
+                ModelState.AddModelError("Email", "This email address is already in use.");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(customer);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException ex) when (ex.InnerException is Microsoft.Data.Sqlite.SqliteException sqliteEx && sqliteEx.SqliteErrorCode == 19)
+                {
+                    ModelState.AddModelError("Email", "This email address is already in use.");
+                }
             }
             return View(customer);
         }
@@ -86,6 +98,11 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
+            if (_context.Customers.Any(c => c.Email == customer.Email && c.Id != customer.Id))
+            {
+                ModelState.AddModelError("Email", "This email address is already in use.");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -103,6 +120,11 @@ namespace DriveNow.Controllers
                     {
                         throw;
                     }
+                }
+                catch (DbUpdateException ex) when (ex.InnerException is Microsoft.Data.Sqlite.SqliteException sqliteEx && sqliteEx.SqliteErrorCode == 19)
+                {
+                    ModelState.AddModelError("Email", "This email address is already in use.");
+                    return View(customer);
                 }
                 return RedirectToAction(nameof(Index));
             }
