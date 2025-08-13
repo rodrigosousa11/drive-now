@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Title_Vehicles" xml:space="preserve">
+    <value>Veículos</value>
+  </data>
+	<data name="Button_AddVehicle" xml:space="preserve">
+    <value>Adicionar Veículo</value>
+  </data>
+	<data name="Header_Brand" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+	<data name="Header_Model" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+	<data name="Header_LicensePlate" xml:space="preserve">
+    <value>Matrícula</value>
+  </data>
+	<data name="Header_ManufactureYear" xml:space="preserve">
+    <value>Ano de Fabrico</value>
+  </data>
+	<data name="Header_FuelType" xml:space="preserve">
+    <value>Tipo de Combustível</value>
+  </data>
+	<data name="Header_Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+	<data name="Text_NoVehiclesFound" xml:space="preserve">
+    <value>Nenhum veículo encontrado.</value>
+  </data>
+	<data name="Status_Rented" xml:space="preserve">
+    <value>Alugado</value>
+  </data>
+	<data name="Status_Available" xml:space="preserve">
+    <value>Disponível</value>
+  </data>
+	<data name="Button_Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+	<data name="Button_Delete" xml:space="preserve">
+    <value>Apagar</value>
+  </data>
+	<data name="Pagination_Previous" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+	<data name="Pagination_Next" xml:space="preserve">
+    <value>Seguinte</value>
+  </data>
+</root>

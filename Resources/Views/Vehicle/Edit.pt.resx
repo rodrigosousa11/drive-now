@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Title_EditVehicle" xml:space="preserve">
+    <value>Editar Veículo</value>
+  </data>
+	<data name="Label_Brand" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+	<data name="Label_Model" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+	<data name="Label_LicensePlate" xml:space="preserve">
+    <value>Matrícula</value>
+  </data>
+	<data name="Label_ManufactureYear" xml:space="preserve">
+    <value>Ano de Fabrico</value>
+  </data>
+	<data name="Label_FuelType" xml:space="preserve">
+    <value>Tipo de Combustível</value>
+  </data>
+	<data name="Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+	<data name="Status_Rented" xml:space="preserve">
+    <value>Alugado</value>
+  </data>
+	<data name="Status_Available" xml:space="preserve">
+    <value>Disponível</value>
+  </data>
+	<data name="Button_Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+	<data name="Button_BackToList" xml:space="preserve">
+    <value>Voltar à Lista</value>
+  </data>
+</root>

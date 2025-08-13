@@ -1,41 +1,30 @@
 @model DriveNow.Models.Customer
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Localizer["DetailsTitle"];
 }
 
 <div>
     <h4>@Html.DisplayFor(model => model.FullName)</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.Email)</dd>
 
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.PhoneNumber)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.PhoneNumber)</dd>
 
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.DrivingLicense)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.DrivingLicense)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.DrivingLicense)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.DrivingLicense)</dd>
     </dl>
 </div>
 
 <div class="mt-3">
     <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">
-        <i class="bi bi-pencil"></i> Edit
+        <i class="bi bi-pencil"></i> @Localizer["Edit"]
     </a>
     <a asp-action="Index" class="btn btn-outline-dark">
-        <i class="bi bi-arrow-left"></i> Back to List
+        <i class="bi bi-arrow-left"></i> @Localizer["BackToList"]
     </a>
 </div>

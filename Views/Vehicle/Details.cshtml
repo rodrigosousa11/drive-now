@@ -1,7 +1,8 @@
 @model DriveNow.Models.Vehicle
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Localizer["Title_DetailsVehicle"];
 }
 
 <div>
@@ -9,37 +10,37 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.LicensePlate)
+            @Localizer["Label_LicensePlate"]
         </dt>
         <dd class="col-sm-10 fw-bold">
             @Html.DisplayFor(model => model.LicensePlate)
         </dd>
 
         <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.ManufactureYear)
+            @Localizer["Label_ManufactureYear"]
         </dt>
         <dd class="col-sm-10 fw-bold">
             @Html.DisplayFor(model => model.ManufactureYear)
         </dd>
 
         <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.FuelType)
+            @Localizer["Label_FuelType"]
         </dt>
         <dd class="col-sm-10 fw-bold">
             @Html.DisplayFor(model => model.FuelType)
         </dd>
 
         <dt class="col-sm-2 fw-normal">
-            Estado
+            @Localizer["Label_Status"]
         </dt>
         <dd class="col-sm-10 fw-bold">
             @if (Model.IsRented)
             {
-                <span class="badge bg-danger d-inline-block text-center" style="min-width: 75px;">Rented</span>
+                <span class="badge bg-danger d-inline-block text-center" style="min-width: 75px;">@Localizer["Status_Rented"]</span>
             }
             else
             {
-                <span class="badge bg-success border d-inline-block text-center" style="min-width: 75px;">Available</span>
+                <span class="badge bg-success border d-inline-block text-center" style="min-width: 75px;">@Localizer["Status_Available"]</span>
             }
         </dd>
     </dl>
@@ -47,9 +48,9 @@
 
 <div class="mt-3">
     <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">
-        <i class="bi bi-pencil"></i> Edit
+        <i class="bi bi-pencil"></i> @Localizer["Button_Edit"]
     </a>
     <a asp-action="Index" class="btn btn-outline-dark">
-        <i class="bi bi-arrow-left"></i> Back to List
+        <i class="bi bi-arrow-left"></i> @Localizer["Button_BackToList"]
     </a>
 </div>

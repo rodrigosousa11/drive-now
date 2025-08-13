@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="EditTitle" xml:space="preserve"><value>Edit Customer</value></data>
+	<data name="EditCustomer" xml:space="preserve"><value>Edit Customer</value></data>
+	<data name="Save" xml:space="preserve"><value>Save</value></data>
+	<data name="BackToList" xml:space="preserve"><value>Back to List</value></data>
+</root>

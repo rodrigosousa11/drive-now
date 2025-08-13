@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Title_Vehicles" xml:space="preserve">
+    <value>Vehicles</value>
+  </data>
+	<data name="Button_AddVehicle" xml:space="preserve">
+    <value>Add Vehicle</value>
+  </data>
+	<data name="Header_Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+	<data name="Header_Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+	<data name="Header_LicensePlate" xml:space="preserve">
+    <value>License Plate</value>
+  </data>
+	<data name="Header_ManufactureYear" xml:space="preserve">
+    <value>Manufacture Year</value>
+  </data>
+	<data name="Header_FuelType" xml:space="preserve">
+    <value>Fuel Type</value>
+  </data>
+	<data name="Header_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+	<data name="Text_NoVehiclesFound" xml:space="preserve">
+    <value>No vehicles found.</value>
+  </data>
+	<data name="Status_Rented" xml:space="preserve">
+    <value>Rented</value>
+  </data>
+	<data name="Status_Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+	<data name="Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+	<data name="Button_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+	<data name="Pagination_Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+	<data name="Pagination_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+</root>

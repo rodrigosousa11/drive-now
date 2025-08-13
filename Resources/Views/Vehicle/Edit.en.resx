@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Title_EditVehicle" xml:space="preserve">
+    <value>Edit Vehicle</value>
+  </data>
+	<data name="Label_Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+	<data name="Label_Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+	<data name="Label_LicensePlate" xml:space="preserve">
+    <value>License Plate</value>
+  </data>
+	<data name="Label_ManufactureYear" xml:space="preserve">
+    <value>Manufacture Year</value>
+  </data>
+	<data name="Label_FuelType" xml:space="preserve">
+    <value>Fuel Type</value>
+  </data>
+	<data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+	<data name="Status_Rented" xml:space="preserve">
+    <value>Rented</value>
+  </data>
+	<data name="Status_Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+	<data name="Button_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+	<data name="Button_BackToList" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+</root>

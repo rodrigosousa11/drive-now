@@ -1,49 +1,34 @@
 @model DriveNow.Models.Customer
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = Localizer["DeleteTitle"];
 }
 
 <div>
-    <h4>Are you sure you want to delete this Customer?</h4>
+    <h4>@Localizer["DeleteConfirm"]</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.FullName)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.FullName)</dd>
 
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.Email)</dd>
 
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.PhoneNumber)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.PhoneNumber)</dd>
 
-        <dt class="col-sm-2 fw-normal">
-            @Html.DisplayNameFor(model => model.DrivingLicense)
-        </dt>
-        <dd class="col-sm-10 fw-bold">
-            @Html.DisplayFor(model => model.DrivingLicense)
-        </dd>
+        <dt class="col-sm-2 fw-normal">@Html.DisplayNameFor(model => model.DrivingLicense)</dt>
+        <dd class="col-sm-10 fw-bold">@Html.DisplayFor(model => model.DrivingLicense)</dd>
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger">
-            <i class="bi bi-trash"></i> Delete
+            <i class="bi bi-trash"></i> @Localizer["Delete"]
         </button>
         <a asp-action="Index" class="btn btn-outline-dark ms-2">
-            <i class="bi bi-arrow-left"></i> Back to List
+            <i class="bi bi-arrow-left"></i> @Localizer["BackToList"]
         </a>
     </form>
 </div>

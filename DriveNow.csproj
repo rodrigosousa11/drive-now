@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Resources\Views\Costumer\" />
+    <Folder Include="Resources\Views\RentalContract\" />
   </ItemGroup>
 
 </Project>

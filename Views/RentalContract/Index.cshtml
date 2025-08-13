@@ -1,14 +1,15 @@
 ﻿@using PagedList.Core
 @model IPagedList<DriveNow.Models.RentalContract>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Rental Contracts";
+    ViewData["Title"] = Localizer["RentalContractsTitle"];
 }
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h3 class="mb-0">Rental Contracts</h3>
+    <h3 class="mb-0">@Localizer["RentalContractsTitle"]</h3>
     <a asp-action="Create" class="btn btn-success btn-sm">
-        <i class="bi bi-plus-lg"></i> New Contract
+        <i class="bi bi-plus-lg"></i> @Localizer["NewContract"]
     </a>
 </div>
 
@@ -16,11 +17,11 @@
     <table class="table table-striped table-hover align-middle mb-0">
         <thead class="table-dark sticky-top" style="background-color: #e9ecef;">
             <tr>
-                <th>Customer</th>
-                <th>Vehicle</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Initial Mileage</th>
+                <th>@Localizer["Customer"]</th>
+                <th>@Localizer["Vehicle"]</th>
+                <th>@Localizer["StartDate"]</th>
+                <th>@Localizer["EndDate"]</th>
+                <th>@Localizer["InitialMileage"]</th>
                 <th></th>
             </tr>
         </thead>
@@ -29,7 +30,7 @@
             {
                 <tr>
                     <td colspan="6" class="text-center text-muted">
-                        No contracts found.
+                        @Localizer["NoContractsFound"]
                     </td>
                 </tr>
             }
@@ -44,8 +45,8 @@
                         <td>@item.EndDate.ToShortDateString()</td>
                         <td>@item.InitialMileage</td>
                         <td class="text-end">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">@Localizer["Edit"]</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">@Localizer["Delete"]</a>
                         </td>
                     </tr>
                 }
@@ -61,13 +62,13 @@
             @if (Model.HasPreviousPage)
             {
                 <li class="page-item">
-                    <a class="page-link text-dark" asp-action="Index" asp-route-page="@(Model.PageNumber - 1)">Previous</a>
+                    <a class="page-link text-dark" asp-action="Index" asp-route-page="@(Model.PageNumber - 1)">@Localizer["Previous"]</a>
                 </li>
             }
             else
             {
                 <li class="page-item disabled">
-                    <span class="page-link text-dark">Previous</span>
+                    <span class="page-link text-dark">@Localizer["Previous"]</span>
                 </li>
             }
 
@@ -90,13 +91,13 @@
             @if (Model.HasNextPage)
             {
                 <li class="page-item">
-                    <a class="page-link text-dark" asp-action="Index" asp-route-page="@(Model.PageNumber + 1)">Next</a>
+                    <a class="page-link text-dark" asp-action="Index" asp-route-page="@(Model.PageNumber + 1)">@Localizer["Next"]</a>
                 </li>
             }
             else
             {
                 <li class="page-item disabled">
-                    <span class="page-link text-dark">Next</span>
+                    <span class="page-link text-dark">@Localizer["Next"]</span>
                 </li>
             }
         </ul>

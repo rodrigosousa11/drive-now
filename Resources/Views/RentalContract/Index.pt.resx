@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="RentalContractsTitle" xml:space="preserve">
+    <value>Contratos de Aluguer</value>
+  </data>
+	<data name="NewContract" xml:space="preserve">
+    <value>Novo Contrato</value>
+  </data>
+	<data name="Customer" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+	<data name="Vehicle" xml:space="preserve">
+    <value>Veículo</value>
+  </data>
+	<data name="StartDate" xml:space="preserve">
+    <value>Data de Início</value>
+  </data>
+	<data name="EndDate" xml:space="preserve">
+    <value>Data de Fim</value>
+  </data>
+	<data name="InitialMileage" xml:space="preserve">
+    <value>Quilometragem Inicial</value>
+  </data>
+	<data name="NoContractsFound" xml:space="preserve">
+    <value>Nenhum contrato encontrado.</value>
+  </data>
+	<data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+	<data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+	<data name="Previous" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+	<data name="Next" xml:space="preserve">
+    <value>Seguinte</value>
+  </data>
+</root>
