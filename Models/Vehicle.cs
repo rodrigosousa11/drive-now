@@ -2,6 +2,12 @@
 
 namespace DriveNow.Models
 {
+    public enum FuelType
+    {
+    Diesel,
+    Gas,
+    Electric
+    }
     public class Vehicle : IValidatableObject
     {
         public int Id { get; set; }
@@ -24,7 +30,7 @@ namespace DriveNow.Models
 
         [Required]
         [Display(Name = "Fuel Type")]
-        public string FuelType { get; set; }
+        public FuelType FuelType { get; set; }
 
         [Display(Name = "Is Rented")]
         public bool IsRented { get; set; } = false;

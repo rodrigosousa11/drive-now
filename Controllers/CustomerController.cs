@@ -14,7 +14,7 @@ namespace DriveNow.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(int page = 1)
+        public IActionResult Index(int page = 1)
         {
             int pageSize = 12;
 

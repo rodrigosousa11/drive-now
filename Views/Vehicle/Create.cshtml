@@ -36,9 +36,9 @@
                 <span asp-validation-for="ManufactureYear" class="text-danger"></span>
             </div>
 
-            <div class="form-group mb-3">
-                <label asp-for="FuelType" class="control-label">@Localizer["Label_FuelType"]</label>
-                <input asp-for="FuelType" class="form-control" />
+            <div class="mb-3">
+                <label asp-for="FuelType" class="form-label"></label>
+                <select asp-for="FuelType" class="form-select" asp-items="Html.GetEnumSelectList<DriveNow.Models.FuelType>()"></select>
                 <span asp-validation-for="FuelType" class="text-danger"></span>
             </div>
 

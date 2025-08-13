@@ -106,13 +106,11 @@ namespace DriveNow.Controllers
             if (id != rentalContract.Id)
                 return NotFound();
 
-            // Ignora propriedades de navegação na validação (não vêm do form)
             ModelState.Remove("Customer");
             ModelState.Remove("Vehicle");
 
             if (!ModelState.IsValid)
             {
-                // Recarrega dados para a view caso a validação falhe
                 var loadedContract = await _context.RentalContracts
                     .Include(r => r.Customer)
                     .Include(r => r.Vehicle)
@@ -124,7 +122,6 @@ namespace DriveNow.Controllers
                 return View(loadedContract);
             }
 
-            // Obtém contrato existente para manter campos que não podem ser editados
             var existingRentalContract = await _context.RentalContracts
                 .AsNoTracking()
                 .FirstOrDefaultAsync(rc => rc.Id == id);
@@ -132,7 +129,6 @@ namespace DriveNow.Controllers
             if (existingRentalContract == null)
                 return NotFound();
 
-            // Mantém campos imutáveis
             rentalContract.CustomerId = existingRentalContract.CustomerId;
             rentalContract.VehicleId = existingRentalContract.VehicleId;
             rentalContract.StartDate = existingRentalContract.StartDate;
@@ -154,6 +150,19 @@ namespace DriveNow.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var rentalContract = await _context.RentalContracts
+                .Include(r => r.Customer)
+                .Include(r => r.Vehicle)
+                .FirstOrDefaultAsync(rc => rc.Id == id);
+
+            if (rentalContract == null) return NotFound();
+
+            return View(rentalContract);
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

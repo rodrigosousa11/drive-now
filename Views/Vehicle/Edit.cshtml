@@ -40,7 +40,7 @@
 
             <div class="mb-3">
                 <label asp-for="FuelType" class="form-label">@Localizer["Label_FuelType"]</label>
-                <input asp-for="FuelType" class="form-control" />
+                <select asp-for="FuelType" class="form-control" asp-items="Html.GetEnumSelectList<DriveNow.Models.FuelType>()"></select>
                 <span asp-validation-for="FuelType" class="text-danger"></span>
             </div>
 
