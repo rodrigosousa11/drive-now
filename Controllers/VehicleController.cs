@@ -31,7 +31,6 @@ namespace DriveNow.Controllers
             return View(pagedVehicles);
         }
 
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,8 +38,7 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var vehicle = await _context.Vehicles.FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -58,12 +56,25 @@ namespace DriveNow.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Brand,Model,LicensePlate,ManufactureYear,FuelType,IsRented")] Vehicle vehicle)
         {
+            if (_context.Vehicles.Any(v => v.LicensePlate == vehicle.LicensePlate))
+            {
+                ModelState.AddModelError("LicensePlate", "This license plate already exists.");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(vehicle);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException ex) when (ex.InnerException is Microsoft.Data.Sqlite.SqliteException sqliteEx && sqliteEx.SqliteErrorCode == 19)
+                {
+                    ModelState.AddModelError("LicensePlate", "This license plate already exists.");
+                }
             }
+
             return View(vehicle);
         }
 
@@ -91,6 +102,11 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
+            if (_context.Vehicles.Any(v => v.LicensePlate == vehicle.LicensePlate && v.Id != vehicle.Id))
+            {
+                ModelState.AddModelError("LicensePlate", "This license plate already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -109,8 +125,15 @@ namespace DriveNow.Controllers
                         throw;
                     }
                 }
+                catch (DbUpdateException ex) when (ex.InnerException is Microsoft.Data.Sqlite.SqliteException sqliteEx && sqliteEx.SqliteErrorCode == 19)
+                {
+                    ModelState.AddModelError("LicensePlate", "This license plate already exists.");
+                    return View(vehicle);
+                }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(vehicle);
         }
 
@@ -121,8 +144,7 @@ namespace DriveNow.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var vehicle = await _context.Vehicles.FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
                 return NotFound();
