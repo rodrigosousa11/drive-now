@@ -15,7 +15,7 @@ DriveNow is a simple car rental management application built with ASP.NET Core M
 
 - ASP.NET Core MVC
 - Entity Framework Core
-- SQL Server (or any EF-supported database)
+- SQL Server Express
 - PagedList.Core for pagination
 - Bootstrap for frontend styling
 
