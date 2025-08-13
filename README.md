@@ -64,4 +64,4 @@ DriveNow is a simple car rental management application built with ASP.NET Core M
 
 ## License
 
-This project is licensed under the MIT License. See `LICENSE` for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
