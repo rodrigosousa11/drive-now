@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DriveNow.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250808092511_InitalCreate")]
+    [Migration("20250814000156_InitalCreate")]
     partial class InitalCreate
     {
         /// <inheritdoc />
@@ -101,9 +101,8 @@ namespace DriveNow.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FuelType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FuelType")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsRented")
                         .HasColumnType("bit");
